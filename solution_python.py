@@ -38,15 +38,21 @@ class EventSourcer():
 
 
     def undo(self):
-        self.cur -= 1
-        self.value = self.values[self.cur]
-        self.undos += 1
+
+        if self.cur > -1:
+
+            self.cur -= 1
+            self.value = self.values[self.cur]
+            self.undos += 1
 
 
     def redo(self):
-        self.cur += 1
-        self.value = self.value + self.transactions[self.cur]
-        self.undos -= 1
+        if self.undos == 0:
+            pass
+        else:
+            self.cur += 1
+            self.value = self.value + self.transactions[self.cur]
+            self.undos -= 1
 
     def bulk_undo(self, steps: int):
         self.cur -= steps
