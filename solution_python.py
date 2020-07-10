@@ -65,4 +65,4 @@ class EventSourcer():
             print(self.values[self.cur])
 
         # self.cur -= steps
-        value = self.values[self.cur]
+        self.value = self.values[self.cur]
